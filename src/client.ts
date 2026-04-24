@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import {
   AddressError,
   EnvironmentError,
@@ -20,6 +21,10 @@ export class Client {
     environment?: string;
     from?: string;
   }) {
+    if (typeof options !== "object" || !options.apiKey) {
+      throw new Error("apiKey required");
+    }
+
     this.apiKey = options.apiKey;
     this.environment = options?.environment;
     this.from = options?.from;
@@ -30,13 +35,11 @@ export class Client {
   }
 
   public async send(data: Email): Promise<Outgoing> {
-    const url = new URL("/v1/send", this.baseUrl);
-
     if (!data.from) {
       data.from = this.from;
     }
 
-    const response = await fetch(url, {
+    const response = await fetch(`${this.baseUrl}/v1/send`, {
       method: "POST",
       headers: {
         Authorization: `bearer ${this.apiKey}`,
@@ -83,9 +86,7 @@ export class Client {
   }
 
   public async status(id: string): Promise<OutgoingStatus> {
-    const url = new URL(`/v1/outgoing/status/${id}`);
-
-    const response = await fetch(url, {
+    const response = await fetch(`${this.baseUrl}/v1/outgoing/status/${id}`, {
       method: "GET",
       headers: {
         Authorization: `bearer ${this.apiKey}`,
