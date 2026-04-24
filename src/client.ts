@@ -79,7 +79,7 @@ export class Client {
       throw new UnexpectedError();
     }
 
-    return (await response.json()) as { status: Status, id: string};
+    return (await response.json()) as { status: Status; id: string };
   }
 
   public async status(id: string): Promise<OutgoingStatus> {

@@ -5,32 +5,31 @@
 Sending emails through shablon.
 
 ```ts
-
-import { Client } from '@shablon-eu/client'
+import { Client } from "@shablon-eu/client";
 
 const client = new Client({
-  apiKey: 'sk_....'
-})
+  apiKey: "sk_....",
+});
 
 // environment determines if mails are sent
-client.setEnvironment('my_env')
+client.setEnvironment("my_env");
 
 try {
-  const {status, id} = await client.send({
-    to: 'somewhere@google.com'
-  })
+  const { status, id } = await client.send({
+    to: "somewhere@google.com",
+  });
 
-  console.log(`current email status is: ${status}`)
-  
-  await new Promise(resolve => setTimeout(resolve, 10_000))
+  console.log(`current email status is: ${status}`);
+
+  await new Promise((resolve) => setTimeout(resolve, 10_000));
 
   // in case you want to check later if the status changed
-  const info = await client.status(id)
-  
-  console.log('updated email status', {
+  const info = await client.status(id);
+
+  console.log("updated email status", {
     status: info.status,
     opened: info.openend,
-  })
+  });
 } catch (e) {
   if (e instanceof InvalidParameters) {
     // mandatory paramters are missing OR parameters have invalid content
