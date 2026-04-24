@@ -20,5 +20,8 @@ jobs:
         name: Install pnpm
         with:
           cache: true
+          run_install: |
+            - recursive: true
+              args: [--strict-peer-dependencies]
         timeout-minutes: 2
       - run: pnpm run ci
