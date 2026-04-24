@@ -21,6 +21,13 @@ export interface Email {
   template: string;
   parameters?: { [key: string]: Variable };
   idempotencyKey?: string;
+  attachments?: {
+    filename: string;
+    content: string;
+    encoding: "base64";
+    disposition?: string;
+    content_id?: string;
+  }[];
 }
 
 export interface Outgoing {

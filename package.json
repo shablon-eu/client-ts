@@ -10,14 +10,19 @@
     "ci": "pnpm run build && pnpm run check-format && pnpm run test",
     "prepublishOnly": "pnpm run ci",
     "local-release": "changeset version && changeset publish",
-    "build": "tsc"
+    "build": "tsc",
+    "upgrade:major": "syncpack update --target latest && pcu update -t latest --no-ai --no-install",
+    "upgrade:minor": "syncpack update --target minor && pcu update -t minor --no-ai --no-install",
+    "upgrade:patch": "syncpack update --target patch && pcu update -t patch --no-ai --no-install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
     "@types/node": "^24.0.15",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "pcu": "1.2.0",
+    "syncpack": "14.3.0"
   },
   "keywords": [],
   "author": "Michael Schramm <michael@ms07.at>",
