@@ -1,6 +1,6 @@
 {
   "name": "@shablon-eu/client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "repository": "https://github.com/shablon-eu/client-ts",
   "scripts": {
@@ -9,6 +9,7 @@
     "test": "vitest run",
     "ci": "pnpm run build && pnpm run check-format && pnpm run test",
     "prepublishOnly": "pnpm run ci",
+    "create-release": "changeset",
     "local-release": "changeset version && changeset publish",
     "build": "tsc",
     "upgrade:major": "syncpack update --target latest && pcu update -t latest --no-ai --no-install",

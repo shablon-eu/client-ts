@@ -1,5 +1,11 @@
 # @shablon-eu/client
 
+## 1.1.1
+
+### Patch Changes
+
+- 54a650d: Improve types to require ony one of to, cc or bcc
+
 ## 1.1.0
 
 ### Minor Changes
