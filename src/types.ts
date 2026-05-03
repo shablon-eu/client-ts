@@ -13,10 +13,19 @@ type Variable =
   | Variable[]
   | { [key: string]: Variable };
 
-export interface Email {
-  to: string | string[];
-  cc: string | string[];
-  bcc: string | string[];
+type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
+  T,
+  Exclude<keyof T, Keys>
+> &
+  {
+    [K in Keys]-?: Required<Pick<T, K>> &
+      Partial<Record<Exclude<Keys, K>, undefined>>;
+  }[Keys];
+
+interface EmailData {
+  to?: string | string[];
+  cc?: string | string[];
+  bcc?: string | string[];
   from?: string;
   template: string;
   parameters?: { [key: string]: Variable };
@@ -29,6 +38,8 @@ export interface Email {
     content_id?: string;
   }[];
 }
+
+export type Email = RequireOnlyOne<EmailData, "to" | "bcc" | "cc">;
 
 export interface Outgoing {
   id: string;
