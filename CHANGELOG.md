@@ -1,5 +1,11 @@
 # @shablon-eu/client
 
+## 1.1.2
+
+### Patch Changes
+
+- 3ca4190: update lock file and auto create release notes
+
 ## 1.1.1
 
 ### Patch Changes
