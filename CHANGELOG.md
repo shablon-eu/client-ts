@@ -1,5 +1,11 @@
 # @shablon-eu/client
 
+## 1.1.3
+
+### Patch Changes
+
+- ed4863a: Fix types for to/cc/bcc and update dependencies
+
 ## 1.1.2
 
 ### Patch Changes
