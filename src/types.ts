@@ -13,13 +13,13 @@ type Variable =
   | Variable[]
   | { [key: string]: Variable };
 
-type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
+type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
   T,
   Exclude<keyof T, Keys>
 > &
   {
     [K in Keys]-?: Required<Pick<T, K>> &
-      Partial<Record<Exclude<Keys, K>, undefined>>;
+      Partial<Pick<T, Exclude<Keys, K>>>;
   }[Keys];
 
 interface EmailData {
@@ -39,7 +39,7 @@ interface EmailData {
   }[];
 }
 
-export type Email = RequireOnlyOne<EmailData, "to" | "bcc" | "cc">;
+export type Email = RequireAtLeastOne<EmailData, "to" | "bcc" | "cc">;
 
 export interface Outgoing {
   id: string;
