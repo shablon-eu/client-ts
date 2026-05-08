@@ -39,6 +39,16 @@ export class Client {
       data.from = this.from;
     }
 
+    if (typeof data.to === "string") {
+      data.to = [data.to];
+    }
+    if (typeof data.cc === "string") {
+      data.cc = [data.cc];
+    }
+    if (typeof data.bcc === "string") {
+      data.bcc = [data.bcc];
+    }
+
     const response = await fetch(`${this.baseUrl}/v1/send`, {
       method: "POST",
       headers: {
