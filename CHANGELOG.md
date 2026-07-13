@@ -1,5 +1,11 @@
 # @shablon-eu/client
 
+## 1.1.4
+
+### Patch Changes
+
+- Normalize string `to`/`cc`/`bcc` destinations into arrays before sending
+
 ## 1.1.3
 
 ### Patch Changes
